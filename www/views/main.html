@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Time logger</title>
+
+    <!-- styles -->
+    <link rel="stylesheet" href="../styles/style.css"/>
+    
+  </head>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <body onload = "updateReload();">
+        <div class ="contain" id = "clockDisplay" ></div>
+        <h3>
+            Aux-Codes Time-Logger 
+            <div class="tooltip">&#x1F6C8;
+                <span class="tooltiptext">This is an Aux-Codes Time-Logger app. It helps you keep a track of your aux code-hours.
+                </span>
+            </div>
+        </h3>
+        
+                <table method="GET" action="../data/data.php">
+
+                    <tr>
+                        <div id="content">
+                            <th><input type=text class="btn ShortLoginEnter" id="SLClicking" required> </th>
+                            <th><span id="valueShortLogin">Short_login</span></th>
+                            <th><button type="button" class="btn Startshortlogin" id="SLSaveClicking" name="storeShortLogin">Save short_login </button></th>
+                            <th><span id="valueShortShow">Short_Login</span></th>
+                            <th><span id="valueShortShowSave">Value</span></th>
+                            <th><span id="valueReload" name="storeReload">Reload:Value</span></th>
+                        </div>
+                    </tr>
+                    
+                    <tr>
+                        <div id="content">
+                            <th><button type="button" class="btn beginDay" id = "BDclicking" name="storeBD"> Start Shift</button></th>
+                            <th><span id="valueBeginDay">HH:MM:SS</span></th>
+                            <th><button type="button" class = "btn StopBD" id = "BDstpclicking" name="storeED"> End Shift </button></th>
+                            <th><span id="valueBeginDayShow">Start_Shift:Time</span></th>
+                            <th><span id="valueEndDayShow">End_Shift:Time</span></th>
+                            <th><span id="durationBeginDay" name="storeDurationBD">Duration_Begin_day</span></th>
+                        </div>
+                    </tr>
+
+                    <tr id="firstBreak">
+                        <div id="content">
+                            <td><button type="button" class="btn 1stbreak" id = "FBclicking" name="storeFB">1st break</button></td>
+                            <td><span id="value1stBreak">HH:MM:SS</span></td>
+                            <td><button class = "btn StopFB" id = "FBstpclicking" name="storeEFB"> End 1st Break </button></td>
+                            <td><span id="value1stBreakShow">1st-B:Time</span></td>
+                            <td><span id="valueEnd1stBreakShow">End:1st-B</span></td>
+                            <th><span id="durationFirstBreak" name="storeDurationFirstBreak">Duration_1st_Break</span></th>
+                        </div>
+                    </tr>
+                
+                    <tr>
+                        <div id="content">
+                            <td><button type="button" class="btn lunch" id = "LBclicking" name="storeL"> lunch </button></td>
+                            <td><span id="valueLunch">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopLB" id = "LBstpclicking" name="storeEL"> End Lunch Break </button></td>
+                            <td><span id="valueLunchShow">Lunch:Time</span></td>
+                            <td><span id="valueEndLunchShow">End:Lunch</span></td>
+                            <th><span id="durationLunchBreak" name="storeDurationLunchBreak">Duration_Lunch_Break</span></th>
+                        </div>
+                    </tr>
+                
+                    <tr id="secondBreak">    
+                        <div id="content">
+                            <td><button type="button" class="btn 2ndbreak" id = "SBclicking" name="storeSB">2nd break</button></td>
+                            <td><span id="value2ndBreak">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopSB" id = "SBstpclicking" name="storeESB"> End 2nd Break </button></td>
+                            <td><span id="value2ndBreakShow">2nd:Break</span></td>
+                            <td><span id="valueEnd2ndBreakShow">End:2nd</span></td>
+                            <th><span id="durationSecondBreak" name="storeDurationSecondBreak">Duration_2nd_Break</span></th>
+                        </div>
+                    </tr>
+
+                    <tr>
+
+                        <div id="content">
+                            <td><button type="button" class="btn coaching" id = "Cclicking" name="storeC">coaching</button></td>
+                            <td><span id="valueCoaching">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopCoaching" id = "Cstpclicking" name="storeEC"> End coaching</button></td>
+                            <td><span id="valueCoachingShow">Coaching:Time</span></td>
+                            <td><span id="valueEndCoachingShow">End:Coaching</span></td>
+                            <th><span id="durationCoaching" name="storeDurationCoaching">Duration_Coaching</span></th>
+                        </div>
+
+                    </tr>
+
+                    <tr>
+                        <div id="content">
+                            <td><button type="button" class="btn meeting" id = "Mclicking" name="storeM">Meeting</button></td>
+                            <td><span id="valueMeeting">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopMeeting" id = "Mstpclicking" name="storeEM"> End Meeting</button></td>
+                            <td><span id="valueMeetingShow">Meeting:Time</span></td>
+                            <td><span id="valueEndMeetingShow">End:Meeting</span></td>
+                            <th><span id="durationMeeting" name="storeDurationMeeting">Duration_Meeting</span></th>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div id="content">
+                            <td><button type="button" class="btn meetingFB" id = "MclickingFB" name="storeMFB">Meeting TP</button></td>
+                            <td><span id="valueMeetingFB">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopMeetingFB" id = "MstpclickingFB" name="storeEMFB"> End Meeting TP</button></td>
+                            <td><span id="valueMeetingFBShow">Meeting_TP:Time</span></td>
+                            <td><span id="valueEndMeetingFBShow">End:Meeting_TP</span></td>
+                            <th><span id="durationMeetingTP" name="storeDurationMeetingTP">Duration_Meeting_TP</span></th>
+                        </div>
+                    </tr>
+                
+                    <tr>
+                        <div id="content">
+                            <td><button type="button" class="btn training" id = "Tclicking" name="storeT">training</button></td>
+                            <td><span id="valueTraining">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopTraining" id = "Tstpclicking" name="storeET"> End training</button></td>
+                            <td><span id="valueTrainingShow">Training:Time</span></td>
+                            <td><span id="valueEndTrainingShow">End:Training</span></td>
+                            <th><span id="durationTraining" name="storeDurationTraining">Duration_Training</span></th>
+                        </div>
+                    </tr>
+                
+                    <tr>
+                        <div id="content">
+                            <td><button type="button" class="btn trainingFB" id = "TclickingFB" name="storeTFB">training TP</button></td>
+                            <td><span id="valueTrainingFB">HH:MM:SS</span></td>
+                            <td><button type="button" class = "btn StopTrainingFB" id = "TstpclickingFB" name="storeETFB"> End training TP</button></td>
+                            <td><span id="valueTrainingFBShow">Training_FB:Time</span></th>
+                            <td><span id="valueEndTrainingFBShow">End:Training_FB</span></td>
+                            <th><span id="durationTrainingTP" name="storeDurationTrainingTP">Duration_Training_TP</span></th>
+                        </div>
+                    </tr>
+
+                </table>
+                
+                <script src="https://cdn.jsdelivr.net/npm/handlebars@4.3.3/dist/handlebars.min.js"></script>
+                
+                <script src="https://cdn.jsdelivr.net/npm/jquery@3.4.1/dist/jquery.min.js"></script>
+                
+                <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>  
+                
+                <script type="text/javascript">
+                    //for live date and time
+                    
+                    function renderTime() {
+
+                        //Date
+                        var mydate = new Date();
+                        var year = mydate.getYear();
+                        if (year < 1000) {
+                            year += 1900
+                        }
+                        var day = mydate.getDay();
+                        var month = mydate.getMonth();
+                        var daym = mydate.getDate();
+                        var dayarray = new Array("Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday");
+                        var montharray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December");
+                        //Date End
+                    
+                        //Time
+                        var currentTime = new Date();
+                        var h = currentTime.getHours();
+                        var m = currentTime.getMinutes();
+                        var s = currentTime.getSeconds();
+                        if (h == 24) {
+                            h = 0;
+                        } else if (h > 12) {
+                            h = h - 0;
+                        }
+                        if (h < 10) {
+                            h = "0" + h;
+                        }
+                        if (m < 10) {
+                            m = "0" + m;
+                        }
+                        if (s < 10) {
+                            s = "0" + s;
+                        }
+                        var myClock = document.getElementById("clockDisplay");
+                        show = (myClock.textContent = "" + dayarray[day] + ", " + daym + " " + montharray[month] + " " + year + "  |  " + h + ":" + m + ":" + s);
+                        myClock.innerText = show;
+                    
+                        setTimeout("renderTime()", 1000);
+                    }
+                    
+                    renderTime();
+                </script>
+
+                <!-- javascript -->
+
+                <script src="../app/index.js"></script>
+
+    </body>
+</html>
